@@ -24,7 +24,7 @@ module.exports = {
       const port = 5000;
       await new Promise((resolve) => {
         server.listen(port, 'localhost', async () => {
-          console.log('Serving and scanning site from', serveDir);
+          console.log(`Serving and scanning site from directory '${serveDir}'`);
 
           const url = `http://localhost:${port}`;
 
