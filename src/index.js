@@ -23,7 +23,7 @@ module.exports = {
       const server = httpServer.createServer({ root: serveDir });
       const port = 5000;
       await new Promise((resolve) => {
-        server.listen(port, '127.0.0.1', async () => {
+        server.listen(port, 'localhost', async () => {
           console.log('Serving and scanning site from', serveDir);
 
           const url = `http://localhost:${port}`;
