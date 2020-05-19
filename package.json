@@ -1,7 +1,7 @@
 {
   "name": "netlify-plugin-is-website-vulnerable",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Netlify plugin to check if a Website uses vulnerable JavaScript libraries",
   "main": "index.js",
   "scripts": {
     "local": "node -e 'require(\"./src/index.js\").onSuccess()'",
@@ -15,6 +15,9 @@
     "netlify-plugin",
     "security",
     "vulnerable"
+  ],
+  "files": [
+    "src"
   ],
   "repository": {
     "type": "git",

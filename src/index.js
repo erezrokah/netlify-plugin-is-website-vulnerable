@@ -1,4 +1,4 @@
-const { Audit, RenderJson } = require('is-website-vulnerable');
+const { Audit, RenderConsole } = require('is-website-vulnerable');
 const puppeteer = require('puppeteer');
 const httpServer = require('http-server');
 
@@ -44,8 +44,8 @@ module.exports = {
             throw new Error(results.lhr.runtimeError.message);
           }
 
-          const json = JSON.parse(new RenderJson(results, true).format());
-          console.log(JSON.stringify(json, null, 2));
+          new RenderConsole(results, true).print();
+
           if (audit.hasVulnerabilities(results)) {
             utils.build.failBuild('site is vulnerable');
           }
