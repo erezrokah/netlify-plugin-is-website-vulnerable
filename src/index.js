@@ -1,35 +1,54 @@
 const { Audit, RenderJson } = require('is-website-vulnerable');
 const puppeteer = require('puppeteer');
+const httpServer = require('http-server');
 
 module.exports = {
   name: 'erezrokah/netlify-plugin-is-website-vulnerable',
-  onSuccess: async ({ utils } = {}) => {
+  onSuccess: async ({ constants: { PUBLISH_DIR } = {}, utils } = {}) => {
     try {
-      const url = process.env.DEPLOY_URL;
-      if (!url) {
-        throw new Error('Empty url');
+      utils = utils || {
+        build: {
+          failBuild: (message) => {
+            console.error(message);
+            process.exit(1);
+          },
+        },
+      };
+
+      const serveDir = PUBLISH_DIR || process.env.PUBLISH_DIR;
+      if (!serveDir) {
+        throw new Error('Empty publish dir');
       }
 
-      const browserFetcher = puppeteer.createBrowserFetcher();
-      const revisions = await browserFetcher.localRevisions();
-      if (revisions.length <= 0) {
-        throw new Error('Could not found local browser');
-      }
-      const info = await browserFetcher.revisionInfo(revisions[0]);
-      process.env.CHROME_PATH = info.executablePath;
+      const server = httpServer.createServer({ root: serveDir });
+      const port = 5000;
+      server.listen(port, '127.0.0.1', async () => {
+        console.log('Serving and scanning site from', serveDir);
 
-      console.log('Scanning URL', url);
-      const audit = new Audit();
-      const results = await audit.scanUrl(url);
-      if (results.lhr.runtimeError) {
-        throw new Error(results.lhr.runtimeError.message);
-      }
+        const url = `http://localhost:${port}`;
 
-      const json = JSON.parse(new RenderJson(results, true).format());
-      console.log(JSON.stringify(json, null, 2));
-      if (audit.hasVulnerabilities(results)) {
-        utils.build.failBuild('site is vulnerable');
-      }
+        const browserFetcher = puppeteer.createBrowserFetcher();
+        const revisions = await browserFetcher.localRevisions();
+        if (revisions.length <= 0) {
+          throw new Error('Could not found local browser');
+        }
+        const info = await browserFetcher.revisionInfo(revisions[0]);
+        process.env.CHROME_PATH = info.executablePath;
+
+        const audit = new Audit();
+        const results = await audit.scanUrl(url);
+        server.close();
+
+        if (results.lhr.runtimeError) {
+          throw new Error(results.lhr.runtimeError.message);
+        }
+
+        const json = JSON.parse(new RenderJson(results, true).format());
+        console.log(JSON.stringify(json, null, 2));
+        if (audit.hasVulnerabilities(results)) {
+          utils.build.failBuild('site is vulnerable');
+        }
+      });
     } catch (error) {
       console.error(`\nError: ${error.message}\n`);
       utils.build.failBuild('unknown error');
