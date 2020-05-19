@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 
 module.exports = {
   name: 'erezrokah/netlify-plugin-is-website-vulnerable',
-  onSuccess: async () => {
+  onSuccess: async ({ utils } = {}) => {
     try {
       const url = process.env.DEPLOY_URL;
       if (!url) {
@@ -26,13 +26,13 @@ module.exports = {
       }
 
       const json = JSON.parse(new RenderJson(results, true).format());
-
-      console.log(JSON.stringify(json.vulnerabilities, null, 2));
-
+      console.log(JSON.stringify(json, null, 2));
       if (audit.hasVulnerabilities(results)) {
+        utils.build.failBuild('site is vulnerable');
       }
     } catch (error) {
       console.error(`\nError: ${error.message}\n`);
+      utils.build.failBuild('unknown error');
     }
   },
 };
