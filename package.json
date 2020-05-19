@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "local": "node -e 'require(\"./src/index.js\").onPostDeploy()'",
+    "local": "node -e 'require(\"./src/index.js\").onSuccess()'",
     "lint": "eslint 'src/**/*.js'",
     "coverage": "jest --coverage",
     "format": "prettier --write 'src/**/*.js'",
@@ -34,7 +34,8 @@
     "prettier": "^2.0.0"
   },
   "dependencies": {
-    "is-website-vulnerable": "^1.14.1"
+    "is-website-vulnerable": "^1.14.1",
+    "puppeteer": "^3.1.0"
   },
   "engines": {
     "node": ">=v10.20.1"
