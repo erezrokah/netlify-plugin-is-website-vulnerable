@@ -22,32 +22,35 @@ module.exports = {
 
       const server = httpServer.createServer({ root: serveDir });
       const port = 5000;
-      server.listen(port, '127.0.0.1', async () => {
-        console.log('Serving and scanning site from', serveDir);
+      await new Promise((resolve) => {
+        server.listen(port, '127.0.0.1', async () => {
+          console.log('Serving and scanning site from', serveDir);
 
-        const url = `http://localhost:${port}`;
+          const url = `http://localhost:${port}`;
 
-        const browserFetcher = puppeteer.createBrowserFetcher();
-        const revisions = await browserFetcher.localRevisions();
-        if (revisions.length <= 0) {
-          throw new Error('Could not found local browser');
-        }
-        const info = await browserFetcher.revisionInfo(revisions[0]);
-        process.env.CHROME_PATH = info.executablePath;
+          const browserFetcher = puppeteer.createBrowserFetcher();
+          const revisions = await browserFetcher.localRevisions();
+          if (revisions.length <= 0) {
+            throw new Error('Could not found local browser');
+          }
+          const info = await browserFetcher.revisionInfo(revisions[0]);
+          process.env.CHROME_PATH = info.executablePath;
 
-        const audit = new Audit();
-        const results = await audit.scanUrl(url);
-        server.close();
+          const audit = new Audit();
+          const results = await audit.scanUrl(url);
+          server.close();
 
-        if (results.lhr.runtimeError) {
-          throw new Error(results.lhr.runtimeError.message);
-        }
+          if (results.lhr.runtimeError) {
+            throw new Error(results.lhr.runtimeError.message);
+          }
 
-        const json = JSON.parse(new RenderJson(results, true).format());
-        console.log(JSON.stringify(json, null, 2));
-        if (audit.hasVulnerabilities(results)) {
-          utils.build.failBuild('site is vulnerable');
-        }
+          const json = JSON.parse(new RenderJson(results, true).format());
+          console.log(JSON.stringify(json, null, 2));
+          if (audit.hasVulnerabilities(results)) {
+            utils.build.failBuild('site is vulnerable');
+          }
+          resolve();
+        });
       });
     } catch (error) {
       console.error(`\nError: ${error.message}\n`);
