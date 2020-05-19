@@ -1,0 +1,47 @@
+{
+  "name": "netlify-plugin-is-website-vulnerable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "local": "node -e 'require(\"./src/index.js\").onPostDeploy()'",
+    "lint": "eslint 'src/**/*.js'",
+    "coverage": "jest --coverage",
+    "format": "prettier --write 'src/**/*.js'",
+    "format:ci": "prettier --check 'src/**/*.js'"
+  },
+  "keywords": [
+    "netlify",
+    "netlify-plugin",
+    "security",
+    "vulnerable"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erezrokah/netlify-plugin-is-website-vulnerable.git"
+  },
+  "author": "Erez Rokah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues"
+  },
+  "homepage": "https://github.com/erezrokah/netlify-plugin-is-website-vulnerable#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "eslint": "^7.0.0",
+    "husky": "^4.0.7",
+    "prettier": "^2.0.0"
+  },
+  "dependencies": {
+    "is-website-vulnerable": "^1.14.1"
+  },
+  "engines": {
+    "node": ">=v10.20.1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
