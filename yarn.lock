@@ -2241,6 +2241,16 @@ netlify-plugin-is-website-vulnerable@^1.0.0:
     is-website-vulnerable "^1.14.1"
     puppeteer "^3.1.0"
 
+netlify-plugin-is-website-vulnerable@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/netlify-plugin-is-website-vulnerable/-/netlify-plugin-is-website-vulnerable-1.0.1.tgz#2de1bd24b9d59250fde6cc4f7851a8f16a3afc6f"
+  integrity sha512-Szwnc/DjvT1XHHbKwppsoJNYrfr+rnJx3nEIEISzZb+DA3olnxNRlA1kyy8fdaBpDNBLYYyoZ23mwm0cvsXMig==
+  dependencies:
+    http-server "^0.12.3"
+    is-website-vulnerable "^1.14.1"
+    netlify-plugin-is-website-vulnerable "^1.0.0"
+    puppeteer "^3.1.0"
+
 node-forge@^0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.9.1.tgz#775368e6846558ab6676858a4d8c6e8d16c677b5"

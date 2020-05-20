@@ -38,7 +38,7 @@
   "dependencies": {
     "http-server": "^0.12.3",
     "is-website-vulnerable": "^1.14.1",
-    "netlify-plugin-is-website-vulnerable": "^1.0.0",
+    "netlify-plugin-is-website-vulnerable": "^1.0.1",
     "puppeteer": "^3.1.0"
   },
   "engines": {
