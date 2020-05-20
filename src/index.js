@@ -31,7 +31,7 @@ module.exports = {
           const browserFetcher = puppeteer.createBrowserFetcher();
           const revisions = await browserFetcher.localRevisions();
           if (revisions.length <= 0) {
-            throw new Error('Could not found local browser');
+            throw new Error('Could not find local browser');
           }
           const info = await browserFetcher.revisionInfo(revisions[0]);
           process.env.CHROME_PATH = info.executablePath;
