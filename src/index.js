@@ -22,7 +22,7 @@ module.exports = {
 
       const server = httpServer.createServer({ root: serveDir });
       const port = 5000;
-      await new Promise((resolve) => {
+      const { error } = await new Promise((resolve) => {
         server.listen(port, 'localhost', async () => {
           console.log(`Serving and scanning site from directory '${serveDir}'`);
 
@@ -31,7 +31,7 @@ module.exports = {
           const browserFetcher = puppeteer.createBrowserFetcher();
           const revisions = await browserFetcher.localRevisions();
           if (revisions.length <= 0) {
-            throw new Error('Could not find local browser');
+            resolve({ error: new Error('Could not find local browser') });
           }
           const info = await browserFetcher.revisionInfo(revisions[0]);
           process.env.CHROME_PATH = info.executablePath;
@@ -41,7 +41,7 @@ module.exports = {
           server.close();
 
           if (results.lhr.runtimeError) {
-            throw new Error(results.lhr.runtimeError.message);
+            resolve({ error: new Error(results.lhr.runtimeError.message) });
           }
 
           new RenderConsole(results, true).print();
@@ -49,12 +49,15 @@ module.exports = {
           if (audit.hasVulnerabilities(results)) {
             utils.build.failBuild('site is vulnerable');
           }
-          resolve();
+          resolve({ error: false });
         });
       });
+      if (error) {
+        throw error;
+      }
     } catch (error) {
       console.error(`\nError: ${error.message}\n`);
-      utils.build.failBuild('unknown error');
+      utils.build.failBuild(`failed with error: ${error.message}`);
     }
   },
 };
