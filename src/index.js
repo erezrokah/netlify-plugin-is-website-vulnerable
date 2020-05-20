@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 const httpServer = require('http-server');
 
 module.exports = {
-  name: 'erezrokah/netlify-plugin-is-website-vulnerable',
+  name: 'netlify-plugin-is-website-vulnerable',
   onSuccess: async ({ constants: { PUBLISH_DIR } = {}, utils } = {}) => {
     try {
       utils = utils || {
