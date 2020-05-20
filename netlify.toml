@@ -1,5 +1,5 @@
 [build]
-  command = "echo 'publishing site'"
+  command = "echo 'no op'"
   publish = "example"
 
   [build.environment]
@@ -7,4 +7,4 @@
     YARN_VERSION = "1.22.4"
     
 [[plugins]]
-package = "netlify-plugin-is-website-vulnerable"
+  package = "netlify-plugin-is-website-vulnerable"
