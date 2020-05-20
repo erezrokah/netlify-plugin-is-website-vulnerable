@@ -1,6 +1,7 @@
 [build]
-  command = "echo 'publishing site'"
-  publish = "example"
+  base = "example"
+  command = "yarn install"
+  publish = "public"
 
   [build.environment]
     YARN_FLAGS = "--frozen-lockfile"
