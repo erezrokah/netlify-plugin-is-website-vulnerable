@@ -6,7 +6,6 @@
   "scripts": {
     "local": "node -e 'require(\"./src/index.js\").onSuccess()'",
     "lint": "eslint 'src/**/*.js'",
-    "coverage": "jest --coverage",
     "format": "prettier --write 'src/**/*.js'",
     "format:ci": "prettier --check 'src/**/*.js'"
   },
