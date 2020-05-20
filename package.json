@@ -34,6 +34,7 @@
     "@commitlint/config-conventional": "^8.1.0",
     "eslint": "^7.0.0",
     "husky": "^4.0.7",
+    "netlify-plugin-is-website-vulnerable": "^1.0.0",
     "prettier": "^2.0.0"
   },
   "dependencies": {
