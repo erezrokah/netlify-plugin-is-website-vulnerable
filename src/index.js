@@ -12,6 +12,9 @@ module.exports = {
             process.exit(1);
           },
         },
+        status: {
+          show: () => undefined,
+        },
       };
 
       const serveDir = PUBLISH_DIR || process.env.PUBLISH_DIR;
@@ -43,9 +46,8 @@ module.exports = {
             resolve({ error: new Error(results.lhr.runtimeError.message) });
           }
 
-          new RenderConsole(results, true).print();
-
           if (audit.hasVulnerabilities(results)) {
+            new RenderConsole(results, true).print();
             utils.build.failBuild('site is vulnerable');
           }
           resolve({ error: false });
@@ -53,6 +55,12 @@ module.exports = {
       });
       if (error) {
         throw error;
+      } else {
+        const summary = 'No vulnerable JavaScript libraries detected';
+        console.log(summary);
+        utils.status.show({
+          summary,
+        });
       }
     } catch (error) {
       console.error(`\nError: ${error.message}\n`);
