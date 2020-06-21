@@ -1,15 +1,15 @@
-const { Audit, RenderConsole } = require('is-website-vulnerable');
-const puppeteer = require('puppeteer');
 const httpServer = require('http-server');
+const { RenderConsole } = require('is-website-vulnerable');
+const { getBrowserPath, runLighthouse } = require('./lighthouse');
 
 module.exports = {
   onSuccess: async ({ constants: { PUBLISH_DIR } = {}, utils } = {}) => {
     try {
       utils = utils || {
         build: {
-          failBuild: (message) => {
-            console.error(message);
-            process.exit(1);
+          failBuild: (...args) => {
+            console.error(...args);
+            process.exitCode = 1;
           },
         },
         status: {
@@ -22,49 +22,55 @@ module.exports = {
         throw new Error('Empty publish dir');
       }
 
+      const browserPath = await getBrowserPath();
+
       const server = httpServer.createServer({ root: serveDir });
       const port = 5000;
-      const { error } = await new Promise((resolve) => {
+      const { error, results } = await new Promise((resolve) => {
         server.listen(port, 'localhost', async () => {
-          console.log(`Serving and scanning site from directory '${serveDir}'`);
-
-          const url = `http://localhost:${port}`;
-
-          const browserFetcher = puppeteer.createBrowserFetcher();
-          const revisions = await browserFetcher.localRevisions();
-          if (revisions.length <= 0) {
-            resolve({ error: new Error('Could not find local browser') });
+          try {
+            console.log(
+              `Serving and scanning site from directory '${serveDir}'`,
+            );
+            const url = `http://localhost:${port}`;
+            const results = await runLighthouse({
+              browserPath,
+              url,
+              onlyAudits: ['no-vulnerable-libraries', 'js-libraries'],
+            });
+            resolve({ error: false, results });
+          } catch (error) {
+            resolve({ error });
+          } finally {
+            server.close();
           }
-          const info = await browserFetcher.revisionInfo(revisions[0]);
-          process.env.CHROME_PATH = info.executablePath;
-
-          const audit = new Audit();
-          const results = await audit.scanUrl(url);
-          server.close();
-
-          if (results.lhr.runtimeError) {
-            resolve({ error: new Error(results.lhr.runtimeError.message) });
-          }
-
-          if (audit.hasVulnerabilities(results)) {
-            new RenderConsole(results, true).print();
-            utils.build.failBuild('site is vulnerable');
-          }
-          resolve({ error: false });
         });
       });
       if (error) {
         throw error;
       } else {
-        const summary = 'No vulnerable JavaScript libraries detected';
-        console.log(summary);
-        utils.status.show({
-          summary,
-        });
+        const vulnerableLibraries =
+          results.lhr.audits['no-vulnerable-libraries'];
+
+        const siteVulnerable =
+          vulnerableLibraries.details &&
+          vulnerableLibraries.details.items &&
+          vulnerableLibraries.details.items.length > 0;
+
+        if (siteVulnerable) {
+          new RenderConsole(results, true).print();
+          utils.build.failBuild('site is vulnerable');
+        } else {
+          const summary = 'No vulnerable JavaScript libraries detected';
+          console.log(summary);
+          utils.status.show({
+            summary,
+          });
+        }
       }
     } catch (error) {
       console.error(`\nError: ${error.message}\n`);
-      utils.build.failBuild(`failed with error: ${error.message}`);
+      utils.build.failBuild(`failed with error: ${error.message}`, { error });
     }
   },
 };
