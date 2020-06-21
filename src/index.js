@@ -1,5 +1,4 @@
 const httpServer = require('http-server');
-const { RenderConsole } = require('is-website-vulnerable');
 const { getBrowserPath, runLighthouse } = require('./lighthouse');
 
 module.exports = {
@@ -58,6 +57,7 @@ module.exports = {
           vulnerableLibraries.details.items.length > 0;
 
         if (siteVulnerable) {
+          const { RenderConsole } = require('is-website-vulnerable');
           new RenderConsole(results, true).print();
           utils.build.failBuild('site is vulnerable');
         } else {
