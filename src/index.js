@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 const httpServer = require('http-server');
 
 module.exports = {
-  onSuccess: async ({ constants: { PUBLISH_DIR } = {}, utils } = {}) => {
+  onPostBuild: async ({ constants: { PUBLISH_DIR } = {}, utils } = {}) => {
     try {
       utils = utils || {
         build: {
