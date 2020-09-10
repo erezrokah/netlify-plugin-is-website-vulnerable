@@ -1,7 +1,7 @@
 {
   "name": "netlify-plugin-is-website-vulnerable",
   "version": "1.0.9",
-  "description": "A Netlify plugin to check if a Website uses vulnerable JavaScript libraries",
+  "description": "A Netlify plugin that uses Snyk to test for security vulnerabilities in a website's JavaScript libraries",
   "main": "src/index.js",
   "scripts": {
     "local": "node -e 'require(\"./src/index.js\").onSuccess()'",
