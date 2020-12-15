@@ -5,6 +5,13 @@
 
 * update package description ([#49](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/49)) ([c2be320](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/c2be320dcc44cf4e926ec3705fdc87511cce5741))
 
+### [1.0.11](https://www.github.com/erezrokah/netlify-plugin-is-website-vulnerable/compare/v1.0.10...v1.0.11) (2020-12-15)
+
+
+### Bug Fixes
+
+* github action ([#101](https://www.github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/101)) ([bdca104](https://www.github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/bdca1041f86f42fed9bca3ab3fa0c44fc5a51e5d))
+
 ## [1.0.9](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/compare/v1.0.8...v1.0.9) (2020-09-03)
 
 
