@@ -3,7 +3,7 @@ name: Node CI
 on:
   push:
     branches:
-      - master
+      - main
     tags:
       - '*'
 
@@ -35,7 +35,7 @@ jobs:
       - name: log versions
         run: node --version && npm --version && yarn --version
       - name: install dependecies
-        run: yarn --frozen-lockfile
+        run: npm ci
       - name: run linter
         run: yarn lint
       - name: check formatting
