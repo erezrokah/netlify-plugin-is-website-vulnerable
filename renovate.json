@@ -5,6 +5,7 @@
   ],
   "rangeStrategy": "update-lockfile",
   "automerge": true,
+  "masterIssue": true,
   "labels": ["renovate"],
   "requiredStatusChecks": null,
   "lockFileMaintenance": {
