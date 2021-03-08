@@ -39,7 +39,7 @@
   "dependencies": {
     "http-server": "^0.12.3",
     "is-website-vulnerable": "^1.14.1",
-    "puppeteer": "^7.0.0"
+    "puppeteer": "^8.0.0"
   },
   "engines": {
     "node": ">=v10.20.1"
