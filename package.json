@@ -38,7 +38,7 @@
     "prettier": "^2.0.0"
   },
   "dependencies": {
-    "http-server": "^0.12.3",
+    "http-server": "^0.13.0",
     "is-website-vulnerable": "^1.14.1",
     "puppeteer": "^10.0.0"
   },
