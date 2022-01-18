@@ -7,7 +7,8 @@
     "local": "node -e 'require(\"./src/index.js\").onPostBuild()'",
     "lint": "eslint 'src/**/*.js'",
     "format": "prettier --write 'src/**/*.js'",
-    "format:ci": "prettier --check 'src/**/*.js'"
+    "format:ci": "prettier --check 'src/**/*.js'",
+    "prepare": "husky install"
   },
   "keywords": [
     "netlify",
@@ -33,7 +34,7 @@
     "@commitlint/cli": "^13.0.0",
     "@commitlint/config-conventional": "^13.0.0",
     "eslint": "^7.0.0",
-    "husky": "^7.0.0",
+    "husky": "^7.0.4",
     "prettier": "^2.0.0"
   },
   "dependencies": {
