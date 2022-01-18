@@ -31,8 +31,8 @@
   },
   "homepage": "https://github.com/erezrokah/netlify-plugin-is-website-vulnerable#readme",
   "devDependencies": {
-    "@commitlint/cli": "^13.0.0",
-    "@commitlint/config-conventional": "^13.0.0",
+    "@commitlint/cli": "^16.0.0",
+    "@commitlint/config-conventional": "^16.0.0",
     "eslint": "^7.0.0",
     "husky": "^7.0.4",
     "prettier": "^2.0.0"
