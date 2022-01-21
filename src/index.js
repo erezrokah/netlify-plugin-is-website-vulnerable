@@ -25,10 +25,11 @@ module.exports = {
       const server = httpServer.createServer({ root: serveDir });
       const port = 5000;
       const { error } = await new Promise((resolve) => {
-        server.listen(port, 'localhost', async () => {
+        server.listen(port, '127.0.0.1', async () => {
           console.log(`Serving and scanning site from directory '${serveDir}'`);
 
-          const url = `http://localhost:${port}`;
+          const { address, port } = server.server.address();
+          const url = `http://${address}:${port}`;
 
           const browserFetcher = puppeteer.createBrowserFetcher();
           const revisions = await browserFetcher.localRevisions();
@@ -36,10 +37,13 @@ module.exports = {
             resolve({ error: new Error('Could not find local browser') });
           }
           const info = await browserFetcher.revisionInfo(revisions[0]);
-          process.env.CHROME_PATH = info.executablePath;
 
           const audit = new Audit();
-          const results = await audit.scanUrl(url);
+          const results = await audit.scanUrl(url, {
+            lighthouseOpts: {},
+            chromeOpts: { chromePath: info.executablePath },
+          });
+
           server.close();
 
           if (results.lhr.runtimeError) {
