@@ -13,16 +13,33 @@ jobs:
     strategy:
       matrix:
         node-version: [lts/*]
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install dependecies
-        run: npm ci
+          cache: npm
+      - name: install dependencies
+        run: npm ci --no-audit
       - name: run linter
         run: npm run lint
       - name: check formatting
         run: npm run format:ci
+  e2e:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['10.20.1', lts/*]
+    needs: [test]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - name: install dependencies
+        run: npm ci --no-audit
+      - name: run tests
+        run: npm test
