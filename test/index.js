@@ -17,5 +17,5 @@ test('Netlify Build fail due to vulnerabilities', async (t) => {
   const output = [logs.stdout.join('\n'), logs.stderr.join('\n')]
     .filter(Boolean)
     .join('\n\n');
-  t.snapshot(output);
+  t.true(output.includes('[2] Total vulnerabilities'));
 });
