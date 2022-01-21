@@ -5,6 +5,19 @@
 
 * update package description ([#49](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/49)) ([c2be320](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/c2be320dcc44cf4e926ec3705fdc87511cce5741))
 
+### [1.0.13](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/compare/v1.0.12...v1.0.13) (2022-01-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency http-server to ^0.13.0 ([cb4e868](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/cb4e868c824bcdafa5b0b0c17654c4f6ad3a9892))
+* **deps:** update dependency is-website-vulnerable to v1.14.8 ([0a94730](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/0a9473093dde0485a06230fe04e2295adfa132bf))
+* **deps:** update dependency puppeteer to v10 ([c7c35a2](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/c7c35a25706f066d96f32919317015b9f5087718))
+* **deps:** update dependency puppeteer to v10.1.0 ([d7a4544](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/d7a4544002a9e71d347eed30b4b77646aef066da))
+* **deps:** update dependency puppeteer to v8 ([4cc01c3](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/4cc01c3fef7ab409accc7767dd438f6481104619))
+* **deps:** update dependency puppeteer to v9 ([28b7f72](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/28b7f725423a0df1cd4cd2bbe3ca0f700ea30ab0))
+* update http-server, fix audit, add tests ([#198](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/198)) ([eeba9ed](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/eeba9ede720eefe6cfa17c5dae067f0a36a23c74))
+
 ### [1.0.12](https://www.github.com/erezrokah/netlify-plugin-is-website-vulnerable/compare/v1.0.11...v1.0.12) (2021-02-15)
 
 
