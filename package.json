@@ -2,7 +2,9 @@
   "name": "netlify-plugin-is-website-vulnerable",
   "version": "1.0.13",
   "description": "A Netlify plugin that uses Snyk to test for security vulnerabilities in a website's JavaScript libraries",
-  "main": "src/index.js",
+  "type": "module",
+  "exports": "./src/index.js",
+  "main": "./src/index.js",
   "scripts": {
     "local": "node -e 'require(\"./src/index.js\").onPostBuild()'",
     "lint": "eslint 'src/**/*.js' 'test/**/*.js'",
@@ -34,7 +36,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.0.0",
     "@commitlint/config-conventional": "^16.0.0",
-    "@netlify/build": "^18.25.2",
+    "@netlify/build": "^26.0.0",
     "ava": "^4.0.0",
     "eslint": "^8.0.0",
     "husky": "^7.0.4",
@@ -47,5 +49,12 @@
   },
   "engines": {
     "node": "^12.20.0 || ^14.14.0 || >=16.0.0"
+  },
+  "ava": {
+    "verbose": true,
+    "timeout": "60s",
+    "environmentVariables": {
+      "FORCE_COLOR": "0"
+    }
   }
 }

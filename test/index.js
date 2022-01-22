@@ -1,8 +1,11 @@
-const test = require('ava');
-const path = require('path');
-const netlifyBuild = require('@netlify/build');
+import test from 'ava';
+import { fileURLToPath } from 'url';
 
-const NETLIFY_CONFIG = path.join(__dirname, '../netlify.toml');
+import netlifyBuild from '@netlify/build';
+
+const NETLIFY_CONFIG = fileURLToPath(
+  new URL('../netlify.toml', import.meta.url),
+);
 
 test('Netlify Build fail due to vulnerabilities', async (t) => {
   const { success, logs } = await netlifyBuild({
@@ -17,5 +20,6 @@ test('Netlify Build fail due to vulnerabilities', async (t) => {
   const output = [logs.stdout.join('\n'), logs.stderr.join('\n')]
     .filter(Boolean)
     .join('\n\n');
+  console.log(output);
   t.true(output.includes('[2] Total vulnerabilities'));
 });
