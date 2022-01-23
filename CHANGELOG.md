@@ -5,6 +5,25 @@
 
 * update package description ([#49](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/49)) ([c2be320](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/c2be320dcc44cf4e926ec3705fdc87511cce5741))
 
+## [2.0.0](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/compare/v1.0.13...v2.0.0) (2022-01-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* move to ESM & update dependency @netlify/build to v26 (#202)
+* drop Node.js 10 support (#205)
+
+### Bug Fixes
+
+* **deps:** update dependency http-server to v14 ([#199](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/199)) ([f605c8e](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/f605c8e325286b538a2bb8107397cb26bf79950d))
+* **deps:** update dependency puppeteer to v13 ([#200](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/200)) ([4fa0fda](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/4fa0fda5e17a8cf0165c56fca35382b2b9110543))
+
+
+### Miscellaneous Chores
+
+* drop Node.js 10 support ([#205](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/205)) ([3bc9a05](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/3bc9a057081af1088d8a3f435c7787ead2bf9003))
+* move to ESM & update dependency @netlify/build to v26 ([#202](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/202)) ([0129e88](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/0129e888b1868c4b96e75d6e92a92f610c7f6758))
+
 ### [1.0.13](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/compare/v1.0.12...v1.0.13) (2022-01-21)
 
 
