@@ -1,0 +1,15 @@
+name: Submit plugin
+on:
+  release:
+    types: [published]
+
+jobs:
+  sync-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+      - uses: netlify/submit-build-plugin-action@main
+        with:
+          # GitHub token with `public_repo` scope.
+          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
