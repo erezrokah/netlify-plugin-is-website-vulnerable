@@ -5,6 +5,13 @@
 
 * update package description ([#49](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/49)) ([c2be320](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/c2be320dcc44cf4e926ec3705fdc87511cce5741))
 
+### [2.0.2](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/compare/v2.0.1...v2.0.2) (2022-02-07)
+
+
+### Bug Fixes
+
+* **deps:** update dependency puppeteer to v13.1.3 ([#213](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/issues/213)) ([b051685](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/commit/b0516858ad70ddbd7a3e748e361e105c879db511))
+
 ### [2.0.1](https://github.com/erezrokah/netlify-plugin-is-website-vulnerable/compare/v2.0.0...v2.0.1) (2022-01-27)
 
 
