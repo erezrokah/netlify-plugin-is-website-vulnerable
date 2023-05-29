@@ -45,7 +45,7 @@
   "dependencies": {
     "http-server": "^14.0.0",
     "is-website-vulnerable": "^1.14.1",
-    "puppeteer": "^13.0.0"
+    "puppeteer": "^20.0.0"
   },
   "engines": {
     "node": "^12.20.0 || ^14.14.0 || >=16.0.0"
