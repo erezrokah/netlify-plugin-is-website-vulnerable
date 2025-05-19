@@ -36,7 +36,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
-    "@netlify/build": "^26.0.0",
+    "@netlify/build": "^33.0.0",
     "ava": "^4.0.0",
     "eslint": "^8.0.0",
     "husky": "^8.0.0",
