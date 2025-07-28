@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - uses: netlify/submit-build-plugin-action@main
         with:
           # GitHub token with `public_repo` scope.

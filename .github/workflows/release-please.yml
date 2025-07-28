@@ -14,7 +14,7 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           release-type: node
           package-name: netlify-plugin-is-website-vulnerable
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.release_created }}
       - uses: actions/setup-node@v3
         with:
