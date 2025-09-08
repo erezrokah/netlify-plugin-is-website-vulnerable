@@ -1,4 +1,4 @@
-import { Audit, RenderConsole } from 'is-website-vulnerable';
+import { Audit, RenderConsole } ;
 import puppeteer from 'puppeteer';
 import httpServer from 'http-server';
 
